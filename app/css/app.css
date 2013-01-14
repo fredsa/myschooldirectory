@@ -1,0 +1,19 @@
+HTML, BODY {
+  height: 100%;
+}
+
+HR.divider {
+  clear: both;
+  border: none;
+  padding: 2px;
+}
+
+H1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.7em 0.4em 0.4em;
+}
+
+.btn {
+  margin-right: 10px;
+}

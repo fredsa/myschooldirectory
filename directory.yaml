@@ -1,0 +1,15 @@
+handlers:
+- url: /
+  static_files: app/index.html
+  upload: app/index.html
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /app
+  static_dir: app
+  secure: always
+
+- url: /api/.*
+  script: api.app

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app='directoryApp'>
+  <head>
+    <title>My School Directory</title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css'>
+    <link rel='stylesheet' href='/app/css/app.css'>
+    <!-- load angular in head section to ensure ngCloak CSS is loaded -->
+    <script src='/app/lib/angular/angular.js'></script>
+
+    <style>
+      [ng\:cloak], [ng-cloak], .ng-cloak {
+        display: none;
+      }
+    </style>
+  </head>
+  <body ng-cloak ng-controller='PageController'>
+    <div class='container'>
+
+      <div class='row'>
+        <div class='span12 alert pagination-centered'>
+          The {{school}} directory is published to help families keep in touch,
+          and it is <em>not</em> used for any other purpose.
+        </div>
+      </div>
+
+      <div id='main'>
+        <div ng-view></div>
+      </div>
+
+      <div class='row'>
+        <div class='span8 muted'>
+          <span>version 0.9</span>
+        </div>
+
+        <div class='span4 pagination-right adminlinks'>
+          <span>git(<a class='link' href='https://code.google.com/p/myschooldirectory/' target='_blank'>myschooldirectory</a>)</span>
+
+          <span ng-show='config.is_admin'>danger(<span class='link' ng-click='big_red_button()'>big-red-button</span>)</span>
+
+          <span ng-show='config.is_admin'>admin(<span class='link' ng-click='datastore_admin()' target='_blank'>datastore</span>,
+                                                <span class='link' ng-click='memcache_admin()' target='_blank'>memcache</span>)</span>
+
+        </div>
+
+      </div>
+    </div>
+
+    <script src='/app/js/services.js'></script>
+    <script src='/app/js/filters.js'></script>
+    <script src='/app/js/directives.js'></script>
+    <script src='/app/js/controllers.js'></script>
+    <script src='/app/js/app.js'></script>
+  </body>
+</html>
