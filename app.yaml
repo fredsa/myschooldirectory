@@ -6,7 +6,7 @@ threadsafe: yes
 
 includes:
 - bootstrap.yaml
-- directory.yaml
+- api.yaml
 
 libraries:
 - name: webapp2
