@@ -17,6 +17,10 @@
     <div class='container'>
 
       <div class='row'>
+        API is <span ng-hide='api_ready'>NOT</span> ready.
+      </div>
+
+      <div class='row'>
         <div class='span12 alert pagination-centered'>
           The {{school}} directory is published to help families keep in touch,
           and it is <em>not</em> used for any other purpose.
@@ -50,5 +54,11 @@
     <script src='/app/js/directives.js'></script>
     <script src='/app/js/controllers.js'></script>
     <script src='/app/js/app.js'></script>
+<script>
+function init() {
+  window.api_ready();
+}
+</script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
   </body>
 </html>

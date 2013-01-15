@@ -1,4 +1,7 @@
 handlers:
+- url: /_ah/spi/.*
+  script: api.app
+
 - url: /
   static_files: app/index.html
   upload: app/index.html
@@ -10,6 +13,3 @@ handlers:
 - url: /app
   static_dir: app
   secure: always
-
-- url: /api/.*
-  script: api.app
