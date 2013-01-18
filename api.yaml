@@ -1,14 +1,17 @@
 handlers:
 - url: /_ah/spi/.*
   script: api.app
+  secure: always
 
 - url: /
   static_files: app/index.html
   upload: app/index.html
+  secure: always
 
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+  secure: always
 
 - url: /app
   static_dir: app
