@@ -7,12 +7,12 @@
       <input type='checkbox' ng-model='parent.publish_name'> Include name in directory
     </label>
 
-    <div class="controls">
+    <div class='controls'>
       <input type='text' class='input-xlarge' placeholder='First Name' ng-model='parent.first_name'>
       <input type='text' class='input-xlarge' placeholder='Last Name' ng-model='parent.last_name'>
     </div>
 
-    <div class="controls controls-row">
+    <div class='controls controls-row'>
       <input type='email' class='input-xlarge' placeholder='Email' ng-model='parent.email'>
     </div>
 
@@ -31,15 +31,15 @@
     <input type='text' class='input-xlarge' placeholder='Last Name' ng-model='child.last_name'>
     <legend>Child {{$index + 1}}</legend>
 
-    <div class="controls controls-row">
+    <div class='controls controls-row'>
       <input type='email' class='input-xlarge' placeholder='Email' ng-model='child.email'>
     </div>
 
   </fieldset>
 
-  <div class="form-actions">
-    <button type="submit" class="btn btn-primary">Save changes</button>
-    <button type="button" class="btn">Cancel</button>
+  <div class='form-actions'>
+    <button type='submit' class='btn btn-primary' ng-click='save'>Save changes</button>
+    <button type='button' class='btn'>Cancel</button>
   </div>
 
 </form>
