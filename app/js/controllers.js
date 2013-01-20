@@ -19,10 +19,6 @@ function PageController($scope, $http, $log, $window) {
 
   $scope.api_loaded = function() {
     $log.log('directory client load is done');
-    gapi.client.directory.parentguardian.insert({first_name: 'Ford'})
-    .execute(function(pg) {
-      $log.log('got back created pargentguardian', pg);
-    });
 
     gapi.client.directory.parentguardian.list()
     .execute(function(result) {
