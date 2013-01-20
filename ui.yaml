@@ -1,0 +1,20 @@
+handlers:
+- url: /
+  static_files: app/index.html
+  mime_type: text/html; charset=utf-8
+  upload: app/index.html
+  secure: always
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+  secure: always
+
+- url: /app(.*\.html)
+  mime_type: text/html; charset=utf-8
+  static_dir: app
+  secure: always
+
+- url: /app
+  static_dir: app
+  secure: always
