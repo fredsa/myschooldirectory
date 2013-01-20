@@ -52,7 +52,16 @@ function PageController($scope, $http, $log, $window) {
 
 }
 
-function MainController($scope) {
+function MainController($scope, $log) {
+  $scope.save = function() {
+    $scope.disable = true;
+    $log.log('Saving...');
+    gapi.client.directory.parentguardian.put($scope.parents[0])
+    .execute(function(result) {
+      $scope.disable = false;
+      $log.log('Saved.');
+    });
+  }
 }
 
 function FamilyController($scope) {

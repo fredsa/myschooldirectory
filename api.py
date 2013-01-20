@@ -2,7 +2,9 @@ from google.appengine.ext import ndb
 from endpoints_proto_datastore.ndb import EndpointsModel
 
 import json
+import logging
 import os
+import pprint as pp
 import webapp2
 
 from protorpc import remote
@@ -19,6 +21,19 @@ _JSON_ENCODER.indent = 4
 _JSON_ENCODER.sort_keys = True
 
 _DEV_APPSERVER = os.environ['SERVER_SOFTWARE'].startswith('Development/')
+
+
+def e(msg, *args, **kwargs):
+  if isinstance(msg, basestring):
+    msg = msg.format(*args, **kwargs)
+  raise Exception(repr(msg))
+
+
+def w(msg, *args, **kwargs):
+  if isinstance(msg, basestring):
+    msg = msg.format(*args, **kwargs)
+  logging.warning('##### {0}'.format(repr(msg)))
+
 
 
 #def tojson(r):
@@ -59,10 +74,11 @@ class DirectoryApi(remote.Service):
   #  pass
 
   @ParentGuardian.method(path='parentguardian',
-                         name='parentguardian.insert'
+                         name='parentguardian.put'
                          #http_method='POST',
                         )
-  def ParentGuardianInsert(self, parent_guardian):
+  def ParentGuardianPut(self, parent_guardian):
+    w('parent_guardian %s' % parent_guardian)
     parent_guardian.put()
     return parent_guardian
 
