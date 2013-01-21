@@ -14,7 +14,4 @@ class ParentGuardian(EndpointsModel):
 
 
 # TODO: remove temporary development hack
-if not ParentGuardian.query().fetch():
-  pg = ParentGuardian(first_name='Jane', last_name='Smith')
-  pg.put()
-
+ParentGuardian.get_or_insert('42', first_name='Jane', last_name='Smith')
