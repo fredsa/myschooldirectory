@@ -10,11 +10,17 @@ handlers:
   upload: favicon\.ico
   secure: always
 
-- url: /app(.*\.html)
-  mime_type: text/html; charset=utf-8
-  static_dir: app
+- url: /app/js
+  mime_type: application/javascript
+  static_dir: app/js
+  secure: always
+
+- url: /app/lib
+  mime_type: application/javascript
+  static_dir: app/lib
   secure: always
 
 - url: /app
+  mime_type: text/html; charset=utf-8
   static_dir: app
   secure: always
