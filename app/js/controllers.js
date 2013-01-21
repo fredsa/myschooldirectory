@@ -8,16 +8,23 @@ function PageController($scope, $http, $log, $window) {
 
   // called by the HTML page once our API client is ready
   $window.api_ready = function() {
-    $scope.$apply($scope.load_api);
-  }
-
-  $scope.load_api = function() {
     $log.log('client api id ready');
     $scope.api_ready = true;
+    $scope.$apply();
+    $scope.try_load();
+  }
+
+  $scope.try_load = function() {
     gapi.client.load('directory', 'v1', $scope.api_loaded, ROOT);
   }
 
-  $scope.api_loaded = function() {
+  $scope.api_loaded = function(result) {
+    // TODO: remove retry functionality, or at least add exponential backoff
+    if (result) {
+      //$log.warn('RETRY client load:', result.error);
+      $scope.try_load();
+      return;
+    }
     $log.log('directory client load is done');
 
     gapi.client.directory.parentguardian.list()
