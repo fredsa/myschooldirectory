@@ -51,13 +51,21 @@ def w(msg, *args, **kwargs):
 #      self.request.data = json.loads(self.request.body)
 #    super(JsonHandler, self).dispatch()
 
+CLIENT_ID = '707601816431.apps.googleusercontent.com'
+CLIENT_SECRET = '_dkXUOzknvFh2M3FGc7Fhqjd'
+SCOPE_EMAIL = 'https://www.googleapis.com/auth/userinfo.email'
+#SCOPE_USERINFO = 'https://www.googleapis.com/auth/userinfo.profile'
 
 @endpoints.api(name='directory', version='v1',
                description='My School Directory API',
                #hostname='localhost:8080',
-               #audiences=___,
-               #allowed_client_ids=[endpoints.API_EXPLORER_CLIENT_ID],
-               #scopes=___,
+               #audiences=[],
+               allowed_client_ids=[
+                   endpoints.API_EXPLORER_CLIENT_ID,
+                   CLIENT_ID,
+               ],
+               #scopes=[SCOPE_EMAIL, SCOPE_USERINFO],
+               scopes=[SCOPE_EMAIL],
               )
 class DirectoryApi(remote.Service):
 
@@ -74,7 +82,7 @@ class DirectoryApi(remote.Service):
   #  pass
 
   @ParentGuardian.method(path='parentguardian',
-                         name='parentguardian.put'
+                         name='parentguardian.put',
                          #http_method='POST',
                         )
   def ParentGuardianPut(self, parent_guardian):
@@ -84,7 +92,7 @@ class DirectoryApi(remote.Service):
 
   @ParentGuardian.query_method(path='parentguardian',
                                name='parentguardian.list',
-                               #user_required=True,
+                               user_required=True,
                               )
   def ParentGuardianList(self, query):
     return query
@@ -102,4 +110,4 @@ class DirectoryApi(remote.Service):
 #    ('/api/get_config', GetConfigHandler)
 #], debug=True)
 
-app = endpoints.api_server([DirectoryApi], restricted=False)
+app = endpoints.api_server([DirectoryApi], restricted=True)

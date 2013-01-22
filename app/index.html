@@ -21,6 +21,11 @@
         </div>
       </div>
 
+      <div class='row pagination-right'>
+        <button class='btn btn-primary' ng-show='authfail && !email' ng-click='signin()'>Sign In</button>
+        <span class='span12' ng-show='email'>{{email}}</button>
+      </div>
+
       <div id='main'>
         <div ng-view></div>
       </div>
@@ -52,7 +57,7 @@
     <script src='/app/js/app.js'></script>
 <script>
 function init() {
-  window.api_ready();
+  window.gapi_ready();
 }
 </script>
     <script src='https://apis.google.com/js/client.js?onload=init'></script>
