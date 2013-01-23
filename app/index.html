@@ -8,30 +8,57 @@
     <script src='/app/lib/angular/angular.js'></script>
   </head>
   <body ng-cloak ng-controller='PageController'>
-    <div class='container'>
 
-      <div class='row'>
-        API is <span ng-hide='api_ready'>NOT</span> ready.
-      </div>
-
-      <div class='row'>
-        <div class='span12 alert pagination-centered'>
-          The {{school}} directory is published to help families keep in touch,
-          and it is <em>not</em> used for any other purpose.
-        </div>
-      </div>
+    <div class='wrap container'>
 
       <div class='row pagination-right'>
-        <button class='btn btn-primary' ng-show='authfail && !email' ng-click='signin()'>Sign In</button>
         <span class='span12' ng-show='email'>{{email}}</button>
       </div>
 
-      <div id='main'>
+      <div class='row'>
+        <h1>{{school}}</h1>
+      </div>
+
+      <div ng-show='fatal_error' class='alert alert-block alert-error'>
+
+        <div class='row'>
+          <div class='span12 pagination-centered'>
+            <strong>Oh snap!</strong> This application has experienced an unexpected problem.
+            Please try to <a onclick='window.location.reload()'>reload</a> this page in a few minutes.
+          </div>
+        </div>
+
+        <div class='row' style='padding-top: 2em;'>
+          <div class='span11'>
+            <pre>{{fatal_error}}</pre>
+          </div>
+        </div>
+
+      </div>
+
+      <div class='row alert alert-info' ng-show='authfail && !email'>
+        <div class='span7'>
+          <strong>Sign in required</strong>.
+          Please sign in to access the {{school}} directory.
+        </div>
+        <div class='span4 pagination-right'>
+          <button class='btn btn-primary' ng-click='signin()'>Sign In</button>
+        </div>
+      </div>
+
+      <div id='main' ng-show='email'>
         <div ng-view></div>
       </div>
 
-      <div class='row'>
-        <div class='span8 muted'>
+      <div class="push">
+      </div>
+
+    </div>
+
+    <div class='footer container'>
+
+      <div class='row muted'>
+        <div class='span8'>
           <span>version 0.9</span>
         </div>
 
@@ -46,6 +73,7 @@
         </div>
 
       </div>
+
     </div>
 
     <script src='/bootstrap/js/jquery.js'></script>

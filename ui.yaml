@@ -15,6 +15,11 @@ handlers:
   static_dir: app/js
   secure: always
 
+- url: /app/css
+  mime_type: text/css; charset=utf-8
+  static_dir: app/css
+  secure: always
+
 - url: /app/lib
   mime_type: application/javascript
   static_dir: app/lib

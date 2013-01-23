@@ -17,31 +17,37 @@ function PageController($scope, $http, $log, $window) {
     $log.log('1. gapi_ready()');
     $scope.api_ready = true;
     $scope.$apply();
-    load_api();
+    load_apis();
   }
 
-  function load_api() {
-    gapi.client.load('directory', 'v1', api_loaded, ROOT);
+  function fatal_error(err) {
+    $scope.fatal_error = err;
+    $scope.$apply();
   }
 
-  function api_loaded(load_api_resp) {
-    $log.log('2. gapi.client.load("directory") -> ', load_api_resp);
+  function load_apis() {
 
-    // TODO: remove retry functionality, or at least add exponential backoff
-    if (load_api_resp) {
-      //$log.warn('RETRY client load:', load_api_resp.error);
-      //$timeout(load_api, 1000);
-      return;
+    var apis_to_load = 0;
+
+    function callback(load_resp) {
+      $log.log('3. gapi.client.load() -> ', load_resp);
+      if (load_resp) {
+        fatal_error(load_resp);
+        return;
+      }
+      if (--apis_to_load == 0) {
+        $scope.authorize(true);
+      }
     }
 
-    load_oauth2();
-  };
+    function load() {
+      apis_to_load++;
+      $log.log('2. gapi.client.load(' + arguments[0] + ', ' + arguments[1] + ', ...)');
+      gapi.client.load.apply(this, arguments);
+    }
 
-  function load_oauth2() {
-    gapi.client.load('oauth2', 'v2', function(load_oauth2_resp2) {
-      $log.log('3. gapi.client.load("oauth2") -> ', load_oauth2_resp2);
-      $scope.authorize(true);
-    });
+    load('oauth2', 'v2', callback);
+    load('directory', 'v1', callback, ROOT);
   }
 
   $scope.authorize = function(immediate) {
@@ -84,6 +90,11 @@ function PageController($scope, $http, $log, $window) {
         gapi.client.directory.parentguardian.list()
         .execute(function(apiResp) {
           $log.log('6. gapi.client.directory.parentguardian.list() -> ', apiResp);
+          if (apiResp.state || apiResp.error_message) {
+            fatal_error(apiResp);
+            return;
+          }
+
           $scope.parents = apiResp.items;
           $scope.$apply();
         });
