@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function PageController($scope, $http, $log, $window) {
+function PageController($scope, $http, $log, $window, $timeout) {
 
   var ROOT = '/_ah/api';
   var CLIENT_ID = '707601816431.apps.googleusercontent.com';
@@ -87,23 +87,26 @@ function PageController($scope, $http, $log, $window) {
         //$log.log('gapi.auth.setToken(', token, ')');
         gapi.auth.setToken(token);
 
-        gapi.client.directory.parentguardian.list()
-        .execute(function(apiResp) {
-          $log.log('6. gapi.client.directory.parentguardian.list() -> ', apiResp);
-          if (apiResp.state || apiResp.error_message) {
-            fatal_error(apiResp);
-            return;
-          }
-
-          $scope.parents = apiResp.items;
-          $scope.$apply();
-        });
-
+        use_api();
       });
 
      });
 
   };
+
+  function use_api() {
+    gapi.client.directory.parentguardian.list()
+    .execute(function(apiResp) {
+      $log.log('6. gapi.client.directory.parentguardian.list() -> ', apiResp);
+      if (apiResp.state || apiResp.error_message) {
+        fatal_error(apiResp);
+        return;
+      }
+
+      $scope.parents = apiResp.items;
+      $scope.$apply();
+    });
+  }
 
   $scope.signin = function() {
     $scope.authorize(false);
