@@ -22,17 +22,22 @@
       <div ng-show='fatal_error' class='alert alert-block alert-error'>
 
         <div class='row'>
-          <div class='span12 pagination-centered'>
-            <strong>Oh snap!</strong> This application has experienced an unexpected problem.
-            Please try to <a onclick='window.location.reload()'>reload</a> this page in a few minutes.
+          <div class='span12'>
+            <h2>Ah snap!</h2>
+            <p>This application has experienced an unexpected problem.
+               Please try to <a onclick='window.location.reload()'>reload</a>
+               this page now, or come back and try again in a few minutes.</p>
           </div>
         </div>
 
-        <div class='row' style='padding-top: 2em;'>
-          <div class='span11'>
-            <pre>{{fatal_error}}</pre>
+        <div class='row'>
+          <div class='span12'>
+            <br/>
+            <strong>Error details:</strong>
           </div>
         </div>
+
+        <pre class='well'>{{fatal_error}}</pre>
 
       </div>
 
