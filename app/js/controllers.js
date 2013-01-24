@@ -22,6 +22,10 @@ function PageController($scope, $http, $log, $window, $timeout) {
     [100, 'Done'],
   ];
 
+  $scope.reload = function() {
+    $window.location.reload();
+  }
+
   function set_progress(step, msg) {
     var state = LOAD_PROGRESS_STATES[step];
     $scope.progress_percent = state[0];

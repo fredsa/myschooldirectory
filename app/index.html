@@ -21,12 +21,14 @@
 
       <div ng-show='fatal_error' class='alert alert-block alert-error'>
 
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+
         <div class='row'>
           <div class='span12'>
             <h2>Ah snap!</h2>
             <p>This application has experienced an unexpected problem.
-               Please try to <a onclick='window.location.reload()'>reload</a>
-               this page now, or come back and try again in a few minutes.</p>
+               Please try to reload this page now, or try again in a few minutes.</p>
+            <button class='btn btn-danger' ng-click='reload()'>reload now</button>
           </div>
         </div>
 
