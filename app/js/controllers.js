@@ -11,6 +11,8 @@ function PageController($scope, $http, $log, $window, $timeout) {
   //var SCOPE_USERINFO = 'https://www.googleapis.com/auth/userinfo.profile';
   var SCOPES = [SCOPE_EMAIL];
 
+  $scope.school = 'School';
+
   var LOAD_PROGRESS_STATES = [
     [10, 'Loading JavaScript client'],
     [20, 'Loading APIs'],
