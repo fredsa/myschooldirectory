@@ -36,6 +36,13 @@
 
       </div>
 
+      <div class='row' style='padding-top: 6em;' ng-show='progress_percent < 100'>
+        <div>{{progress_msg}}</div>
+        <div class='progress progress-striped active'>
+          <div class='bar' style='width: {{progress_percent}}%;'></div>
+        </div>
+      </div>
+
       <div class='row alert alert-info' ng-show='authfail && !email'>
         <div class='span7'>
           <strong>Sign in required</strong>.
