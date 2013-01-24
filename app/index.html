@@ -43,21 +43,21 @@
         </div>
       </div>
 
-      <div class='row alert alert-info' ng-show='authfail && !email'>
-        <div class='span7'>
-          <strong>Sign in required</strong>.
-          Please sign in to access the {{school}} directory.
-        </div>
-        <div class='span4 pagination-right'>
-          <button class='btn btn-primary' ng-click='signin()'>Sign In</button>
-        </div>
+      <div class='hero-unit' ng-show='authfail && !email'>
+        <h1>Sign in required</h1>
+        <p>Please sign in to access the {{school}} directory.</p>
+        <p>
+          <a class='btn btn-primary btn-large' ng-click='signin()'>
+            Sign In
+          </a>
+        </p>
       </div>
 
       <div id='main' ng-show='email'>
         <div ng-view></div>
       </div>
 
-      <div class="push">
+      <div class='push'>
       </div>
 
     </div>
