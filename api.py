@@ -64,7 +64,6 @@ SCOPE_EMAIL = 'https://www.googleapis.com/auth/userinfo.email'
                    endpoints.API_EXPLORER_CLIENT_ID,
                    CLIENT_ID,
                ],
-               #scopes=[SCOPE_EMAIL, SCOPE_USERINFO],
                scopes=[SCOPE_EMAIL],
               )
 class DirectoryApi(remote.Service):

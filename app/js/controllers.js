@@ -8,9 +8,8 @@ function PageController($scope, $http, $log, $window, $timeout) {
   var CLIENT_ID = '707601816431.apps.googleusercontent.com';
   var CLIENT_SECRET = '_dkXUOzknvFh2M3FGc7Fhqjd';
   var SCOPE_EMAIL = 'https://www.googleapis.com/auth/userinfo.email';
-  var SCOPE_USERINFO = 'https://www.googleapis.com/auth/userinfo.profile';
-  var SCOPES = [SCOPE_EMAIL, SCOPE_USERINFO];
-  //var SCOPES = ['https://www.googleapis.com/auth/userinfo.email'];
+  //var SCOPE_USERINFO = 'https://www.googleapis.com/auth/userinfo.profile';
+  var SCOPES = [SCOPE_EMAIL];
 
   var LOAD_PROGRESS_STATES = [
     [10, 'Loading JavaScript client'],
