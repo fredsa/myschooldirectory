@@ -12,6 +12,7 @@ from protorpc import remote
 import endpoints
 
 from model import ParentGuardian
+from model import Child
 
 
 _JSON_MIME_TYPE = 'application/json'
@@ -93,7 +94,14 @@ class DirectoryApi(remote.Service):
                                name='parentguardian.list',
                                user_required=True,
                               )
-  def ParentGuardianList(self, query):
+  def ParentGuardianQuery(self, query):
+    return query
+
+  @Child.query_method(path='child',
+                      name='child.list',
+                      user_required=True,
+                     )
+  def ChildQuery(self, query):
     return query
 
 

@@ -128,6 +128,17 @@ function PageController($scope, $http, $log, $window, $timeout) {
 
       $scope.parents = apiResp.items;
     }) });
+
+    gapi.client.directory.child.list()
+    .execute(function(apiResp) { $scope.$apply(function() {
+      $log.log('gapi.client.directory.child.list() -> ', apiResp);
+      if (apiResp.state || apiResp.error_message) {
+        fatal_error(apiResp);
+        return;
+      }
+
+      $scope.children = apiResp.items;
+    }) });
   }
 
   $scope.signin = function() {
@@ -143,16 +154,6 @@ function PageController($scope, $http, $log, $window, $timeout) {
   };
 
   //$scope.get_config();
-
-  $scope.children = [{
-      first_name: 'Sophia',
-      last_name: 'Smith',
-    }, {
-       first_name: 'Jacob',
-       last_name: 'Smith',
-       publish_name: true,
-    }
-  ];
 
 }
 
