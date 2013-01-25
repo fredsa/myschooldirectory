@@ -126,7 +126,7 @@ function PageController($scope, $http, $log, $window, $timeout) {
         return;
       }
 
-      $scope.parents = apiResp.items;
+      $scope.parentguardians = apiResp.items;
     }) });
 
     gapi.client.directory.child.list()
@@ -145,6 +145,14 @@ function PageController($scope, $http, $log, $window, $timeout) {
     authorize(false);
   }
 
+  $scope.add_parentguardian = function() {
+    $scope.parentguardians.push({});
+  }
+
+  $scope.add_child = function() {
+    $scope.children.push({});
+  }
+
   $scope.get_config = function() {
     return $http.get('/api/get_config')
     .success(function(data, status, headers, config) {
@@ -161,7 +169,7 @@ function MainController($scope, $log) {
   $scope.save = function() {
     $scope.disable = true;
     $log.log('Saving...');
-    gapi.client.directory.parentguardian.put($scope.parents[0])
+    gapi.client.directory.parentguardian.put($scope.parentguardians[0])
     .execute(function(resp) {
       $scope.disable = false;
       $log.log('Saved.');

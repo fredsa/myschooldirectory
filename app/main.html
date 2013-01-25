@@ -2,23 +2,24 @@
 
 <form class='form'>
 
-  <fieldset ng-repeat='parent in parents'>
+  <fieldset ng-repeat='pg in parentguardians'>
     <label class='checkbox'>
-      <input type='checkbox' ng-model='parent.publish_name'> Include name in directory
+      <input type='checkbox' ng-model='pg.publish_name'> Include name in directory
     </label>
 
-    <div class='controls'>
-      <input type='text' class='input-xlarge' placeholder='First Name' ng-model='parent.first_name'>
-      <input type='text' class='input-xlarge' placeholder='Last Name' ng-model='parent.last_name'>
+    <div class='controls controls-row'>
+      <input type='text' class='span3' placeholder='First Name' ng-model='pg.first_name'>
+      <input type='text' class='span3' placeholder='Last Name' ng-model='pg.last_name'>
     </div>
 
     <div class='controls controls-row'>
-      <input type='email' class='input-xlarge' placeholder='Email' ng-model='parent.email'>
+      <input type='email' class='span4' placeholder='Email' ng-model='pg.email'>
     </div>
 
-    <legend>Parent {{$index + 1}} -- {{parent.first_name}} {{parent.last_name}}</legend>
+    <legend>Parent {{$index + 1}} -- {{pg.first_name}} {{pg.last_name}}</legend>
 
   </fieldset>
+  <p><a href ng-click='add_parentguardian()'>Add Parent</a></p>
 
 
   <fieldset ng-repeat='child in children'>
@@ -27,17 +28,18 @@
       <input type='checkbox'> Include name in directory
     </label>
 
-    <input type='text' class='input-xlarge' placeholder='First Name' ng-model='child.first_name'>
-    <input type='text' class='input-xlarge' placeholder='Last Name' ng-model='child.last_name'>
+    <input type='text' class='span3' placeholder='First Name' ng-model='child.first_name'>
+    <input type='text' class='span3' placeholder='Last Name' ng-model='child.last_name'>
     <legend>Child {{$index + 1}}</legend>
 
     <div class='controls controls-row'>
-      <input type='email' class='input-xlarge' placeholder='Email' ng-model='child.email'>
+      <input type='email' class='input-span4' placeholder='Email' ng-model='child.email'>
     </div>
 
   </fieldset>
+  <p><a href ng-click='add_child()'>Add child</a></p>
 
-  <div class='form-actions'>
+  <div class='form-actions form-horizontal'>
     <button type='submit' class='btn btn-primary' ng-click='save()'>Save changes</button>
     <button type='button' class='btn'>Cancel</button>
   </div>
