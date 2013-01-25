@@ -1,4 +1,5 @@
 handlers:
 - url: /_ah/spi/.*
+  # do not mark 'secure: always' as that prevents
+  # /_ah/spi/BackendService.getApiConfigs callback
   script: api.app
-  secure: always
