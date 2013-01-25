@@ -3,6 +3,9 @@
 <form class='form'>
 
   <fieldset ng-repeat='pg in parentguardians'>
+
+    <legend>Parent {{$index + 1}} -- {{pg.first_name}} {{pg.last_name}}</legend>
+
     <label class='checkbox'>
       <input type='checkbox' ng-model='pg.publish_name'> Include name in directory
     </label>
@@ -12,11 +15,14 @@
       <input type='text' class='span3' placeholder='Last Name' ng-model='pg.last_name'>
     </div>
 
-    <div class='controls controls-row'>
-      <input type='email' class='span4' placeholder='Email' ng-model='pg.email'>
+    <div class='control-group'>
+      <div class='controls'>
+        <div class='input-prepend'>
+          <span class='add-on'><i class='icon-envelope'></i></span>
+          <input type='email' class='span4' placeholder='Email' ng-model='pg.email'>
+        </div>
+      </div>
     </div>
-
-    <legend>Parent {{$index + 1}} -- {{pg.first_name}} {{pg.last_name}}</legend>
 
   </fieldset>
   <p><a href ng-click='add_parentguardian()'>Add Parent</a></p>
@@ -24,17 +30,26 @@
 
   <fieldset ng-repeat='child in children'>
 
+    <legend>Child {{$index + 1}}</legend>
+
     <label class='checkbox'>
       <input type='checkbox'> Include name in directory
     </label>
 
-    <input type='text' class='span3' placeholder='First Name' ng-model='child.first_name'>
-    <input type='text' class='span3' placeholder='Last Name' ng-model='child.last_name'>
-    <legend>Child {{$index + 1}}</legend>
-
     <div class='controls controls-row'>
-      <input type='email' class='input-span4' placeholder='Email' ng-model='child.email'>
+      <input type='text' class='span3' placeholder='First Name' ng-model='child.first_name'>
+      <input type='text' class='span3' placeholder='Last Name' ng-model='child.last_name'>
     </div>
+
+    <div class='control-group'>
+      <div class='controls'>
+        <div class='input-prepend'>
+          <span class='add-on'><i class='icon-envelope'></i></span>
+          <input type='email' class='span4' placeholder='Email' ng-model='child.email'>
+        </div>
+      </div>
+    </div>
+
 
   </fieldset>
   <p><a href ng-click='add_child()'>Add child</a></p>
