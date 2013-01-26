@@ -19,5 +19,16 @@ class Child(Person):
 
 
 # TODO: remove temporary development hack
-ParentGuardian.get_or_insert('42', email='test@example.com', first_name='Jane', last_name='Smith')
-Child.get_or_insert('67', email='child@example.com', first_name='Sophia', last_name='Smith')
+@ndb.transactional(xg=True)
+def init():
+  key = ndb.Key(ParentGuardian, 42)
+  pg = key.get()
+  if not pg:
+    ParentGuardian(key=key, email='jane@example.com', first_name='Jane', last_name='Smith').put()
+
+  key = ndb.Key(Child, 67)
+  child = key.get()
+  if not child:
+    Child(key=key, email='sophia@example.com', first_name='Sophia', last_name='Smith').put()
+
+init()
